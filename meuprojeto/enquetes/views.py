@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from .models import Enquete
 # Create your views here.
 def bemvindo(request):
@@ -6,11 +6,6 @@ def bemvindo(request):
 
 
 def enquete(request, enquete_id):
-    context = {}
-    if enquete_id == 1:
-        context['enquete'] = Enquete("Como usar classes em Python?", '2020-08-26')
-    elif enquete_id == 1:
-        context['enquete'] = Enquete("O que é Django REST Framework", '2020-07-30') 
-    elif enquete_id == 3:
-        context['enquete'] = Enquete("O que é **kwargs?", '2020-08-16')
+    #context = {'enquete': Enquete.objects.get(id=enquete_id)}
+    context = {'enquete': get_object_or_404(Enquete, id=enquete_id)}
     return render(request, 'enquete.html', context)
