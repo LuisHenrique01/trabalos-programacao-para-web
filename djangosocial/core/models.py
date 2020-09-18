@@ -99,14 +99,14 @@ class Reacao(models.Model):
         verbose_name = 'Reaçao'
         verbose_name_plural = 'Reacões'
 
-    def save(self, *args, **kwargs):
-        """Gerenciando para que o mesmo usuario use duas ou mais reações no mesmo post"""
-        reacao = Reacao.objects.filter(postagem=self.postagem, perfil=self.perfil)
-        self.data = date.today()
-        if len(reacao) > 0:
-            self.id = reacao[0].id
-            super(Reacao, self).save(*args, **kwargs)
-        super(Reacao, self).save(*args, **kwargs)
+#    def save(self, *args, **kwargs):
+#        """Gerenciando para que o mesmo usuario use duas ou mais reações no mesmo post"""
+#        reacao = Reacao.objects.filter(postagem=self.postagem, perfil=self.perfil)
+#        self.data = date.today()
+#        if len(reacao) > 0:
+#            self.id = reacao[0].id
+#            super(Reacao, self).save(*args, **kwargs)
+#        super(Reacao, self).save(*args, **kwargs)
 
     def __str__(self):
         """Unicode representation of Reacao."""
