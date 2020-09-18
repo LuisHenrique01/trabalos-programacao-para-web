@@ -1,3 +1,7 @@
+# Luis henrique Rocha Bueno
+
+## Testes realizados no shell
+
 ```python
  from core.models import *
  
