@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="main ui container">
+    <div class="ui two column centered grid">
+        <div class="column">
+          <h2 class="ui center aligned icon header">
+            <i class="circular user icon"></i>
+            Perfis
+          </h2>
+        </div>
+        <div class="ui four column centered row">
+            {% for perfil in perfis %}
+            <div class="column">
+                <div class="ui card" style="margin-bottom: 20px;">
+                    <div class="image">
+                      <img src="{% static 'img/perfil-fotebol.svg' %}">
+                    </div>
+                    <div class="content">
+                      <a class="header">{{perfil.nome}}</a>
+                      <div class="meta">
+                        <span class="date"><b>Aniversário: </b>{{perfil.usuario.data_nascimento|date:"j F"}}</span>
+                      </div>
+                    </div>
+                    <div class="extra content">
+                      <a href="{% url 'perfil' perfil.id %}">
+                        <button class="ui inverted violet button">
+                            <i class="user icon"></i>
+                            Entrar
+                        </button>
+                      </a>
+                    </div>
+                  </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock content %}
+    
