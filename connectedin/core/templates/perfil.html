@@ -27,56 +27,112 @@
             <i class="address card outline icon"></i>
         </div>
     </div>
-  
-    <div class="ui teal inverted segment">
+<div class="ui segment">
+    <div class="ui two column very relaxed grid">
+         <div class="ui column">
+            <div class="ui blue inverted segment">
+                <h5 class="ui center aligned icon header">
+                    <i class="circular user plus icon"></i>
+                    Pessoas que talvez você conheça
+                </h5>
+            </div>
+
+            <div class="ui two cards">
+        
+                {% for pa in posiveis_amigos %}
+                    <div class="card">
+                        <div class="content">
+                            <img class="right floated mini ui image" src="{% static 'img/perfil-fotebol.svg' %}">
+                            <div class="header">
+                                {{pa.nome}}
+                            </div>
+                            <div class="description">
+                                <b>Aniversário: </b>{{pa.usuario.data_nascimento|date:"j F"}}
+                            </div>
+                        </div>
+                        <div class="extra content">
+                            <a href="{% url 'enviar_convite' perfil.id pa.id %}">
+                                <div class="ui bottom violet attached button">
+                                <i class="add icon"></i>
+                                Adicionar aos amigos
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+         </div>
+         <div class="ui column">
+            <div class="ui teal inverted segment">
+                <h5 class="ui center aligned icon header">
+                    <i class="circular user times icon"></i>
+                    Solicitações
+                </h5>
+            </div>
+
+            <div class="ui two cards">
+        
+                {% for cr in convites_recebidos %}
+                    <div class="card">
+                        <div class="content">
+                            <img class="right floated mini ui image" src="{% static 'img/perfil-fotebol.svg' %}">
+                            <div class="header">
+                                {{cr.remetente.nome}}
+                            </div>
+                            <div class="description">
+                                <b>Data: </b>{{cr.data|date:"j F "}}
+                            </div>
+                        </div>
+                        <div class="extra content">
+                            <div class="ui two buttons">
+                                <a href="{% url 'aceitar_convite' cr.id %}" style="margin-right: 20px;">
+                                    <div class="ui green button">Aceitar</div>
+                                </a>
+                                <a href="{% url 'recusar_convite' cr.id %}" style="margin-left: 20px;">
+                                    <div class="ui red button">Excluir</div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+         </div>
+    </div>
+</div>
+
+<div class="ui segment">
+    <div class="ui purple inverted segment">
         <h5 class="ui center aligned icon header">
             <i class="circular users icon"></i>
             Amigos
         </h5>
     </div>
 
-    <div class="ui cards" style="margin-bottom: 10px;">
+    <div class="ui four cards">
         
         {% for amigo in amigos %}
             <div class="card">
                 <div class="content">
-                    <div class="header">{{amigo.nome}}</div>
-                    <div class="meta">Amigo</div>
+                    <img class="right floated mini ui image" src="{% static 'img/perfil-fotebol.svg' %}">
+                    <div class="header">
+                        {{amigo.nome}}
+                    </div>
                     <div class="description">
-                        <b>Aniversário: </b>{{perfil.usuario.data_nascimento|date:"j F"}}
+                        <b>Aniversário: </b>{{amigo.data_nascimento|date:"j F"}}
                     </div>
+                </div>
+                <div class="extra content">
+                    <a href="{% url 'desfazer_amizade' perfil.id amigo.id %}">
+                        <div class="ui bottom red attached button">
+                            <i class="minus icon"></i>
+                            Desfazer amizade
+                        </div>
+                    </a>
                 </div>
             </div>
         {% endfor %}
-
     </div>
-
-    <div class="ui blue inverted segment">
-        <h5 class="ui center aligned icon header">
-            <i class="circular user plus icon"></i>
-            Pessoas que talvez você conheça
-        </h5>
-    </div>
-
-    <div class="ui cards" style="margin-bottom: 10px;">
-        
-        {% for pa in posiveis_amigos %}
-            <div class="card">
-            <div class="content">
-                <div class="header">{{pa.nome}}</div>
-                <div class="description">
-                    <b>Aniversário: </b>{{pa.usuario.data_nascimento|date:"j F"}}
-                </div>
-                </div>
-                <a href="{% url 'enviar_convite' perfil.id pa.id %}">
-                    <div class="ui bottom violet attached button">
-                    <i class="add icon"></i>
-                    Adicionar aos amigos
-                    </div>
-                </a>
-            </div>
-        {% endfor %}
-    </div>
+</div>
 
 </div>
 {% endblock content %}
