@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+<div class="ui container">
+    <div class="ui main">
+        <form action="" method="post" class="ui form">
+            {% csrf_token %}
+            <h4 class="ui dividing header">Contactar</h4>
+            <div class="fields">
+                <div class="six wide field">
+                    <label for="id_corretor">{{form.corretor.label}}: </label>
+                    {{form.corretor}}
+                </div>
+                <div class="five wide field">
+                    <label for="id_proprietario">{{form.proprietario.label}}: </label>
+                    {{form.proprietario}}
+                </div>
+                <div class="five wide field">
+                    <label for="id_data">{{form.data.label}}: </label>
+                    {{form.data}}
+                </div>
+            </div>
+            <button class="ui primary button" type="submit">
+                Salvar
+            </button>
+        </form>
+    </div>
+</div>
+{% endblock content %}
+    

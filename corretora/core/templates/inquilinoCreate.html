@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+<div class="ui container">
+    <div class="ui main">
+        <form action="" method="post" class="ui form">
+            {% csrf_token %}
+            <h4 class="ui dividing header">Cadastrar Inquilino</h4>
+            <div class="fields">
+                <div class="four wide field">
+                    <label for="id_cpf">{{form.cpf.label}}: </label>
+                    {{form.cpf}}
+                </div>
+                <div class="six wide field">
+                    <label for="id_nome">{{form.nome.label}}: </label>
+                    {{form.nome}}
+                </div>
+                <div class="six wide field">
+                    <label for="id_email">{{form.email.label}}: </label>
+                    {{form.email}}
+                </div>
+            </div>
+            <div class="fields">
+                <div class="five wide field">
+                    <label for="id_telefone">{{form.telefone.label}}: </label>
+                    {{form.telefone}}
+                </div>
+                <div class="five wide field">
+                    <label for="id_cidade">{{form.cidade.label}}: </label>
+                    {{form.cidade}}
+                </div>
+                <div class="six wide field">
+                    <label for="id_bairro">{{form.bairro.label}}: </label>
+                    {{form.bairro}}
+                </div>
+            </div>
+            <div class="fields">
+                <div class="five wide field">
+                    <label for="id_rua">{{form.rua.label}}: </label>
+                    {{form.rua}}
+                </div>
+                <div class="six wide field">
+                    <label for="id_numero">{{form.numero.label}}: </label>
+                    {{form.numero}}
+                </div>
+                <div class="five wide field">
+                    <label for="id_complemento">{{form.complemento.label}}: </label>
+                    {{form.complemento}}
+                </div>
+            </div>
+            <button class="ui primary button" type="submit">
+                Salvar
+            </button>
+        </form>
+    </div>
+</div>
+{% endblock content %}
+    

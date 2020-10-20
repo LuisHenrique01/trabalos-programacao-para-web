@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+<div class="ui container">
+    <div class="ui main">
+        <form action="" method="post" class="ui form">
+            {% csrf_token %}
+            <h4 class="ui dividing header">Alugar</h4>
+            <div class="fields">
+                <div class="six wide field">
+                    <label for="id_imovel">{{form.imovel.label}}: </label>
+                    {{form.imovel}}
+                </div>
+                <div class="five wide field">
+                    <label for="id_data_aluguel">{{form.data_aluguel.label}}: </label>
+                    {{form.data_aluguel}}
+                </div>
+                <div class="five wide field">
+                    <label for="id_data_vencimento">{{form.data_vencimento.label}}: </label>
+                    {{form.data_vencimento}}
+                </div>
+            </div>
+            <div class="fields">
+                <div class="eight wide field">
+                    <label for="id_inquilino">{{form.inquilino.label}}: </label>
+                    {{form.inquilino}}
+                </div>
+                <div class="eight wide field">
+                    <label for="id_corretor">{{form.corretor.label}}: </label>
+                    {{form.corretor}}
+                </div>
+            </div>
+            <button class="ui primary button" type="submit">
+                Salvar
+            </button>
+        </form>
+    </div>
+</div>
+{% endblock content %}
+    

@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+    <div class="ui container">
+        <div class="ui main">
+            <a href="{% url 'InquilinoCreate' %}"><button class="ui button">Cadastrar Inquilino</button></a>
+            <a href="{% url 'ProprietarioCreate' %}"><button class="ui button">Cadastrar Proprietario</button></a>
+            <a href="{% url 'CorretorCreate' %}"><button class="ui button">Cadastrar Corretor</button></a>
+            <a href="{% url 'ImovelCreate' %}"><button class="ui button">Cadastrar Imóvel</button></a>
+            <a href="{% url 'AlugarCreate' %}"><button class="ui button">Alugar</button></a>
+            <a href="{% url 'AtendeCreate' %}"><button class="ui button">Atendimento</button></a>
+            <a href="{% url 'ContactarCreate' %}"><button class="ui button">Catactar</button></a>
+        </div>
+    </div>
+{% endblock content %}
+    

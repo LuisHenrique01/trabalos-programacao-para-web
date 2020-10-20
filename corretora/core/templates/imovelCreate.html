@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+<div class="ui container">
+    <div class="ui main">
+        <form action="" method="post" class="ui form">
+            {% csrf_token %}
+            <h4 class="ui dividing header">Cadastrar Imóvel</h4>
+            <div class="fields">
+                <div class="six wide field">
+                    <label for="id_proprietario">{{form.proprietario.label}}: </label>
+                    {{form.proprietario}}
+                </div>
+                <div class="five wide field">
+                    <label for="id_valor_aluguel">{{form.valor_aluguel.label}}: </label>
+                    {{form.valor_aluguel}}
+                </div>
+                <div class="five wide field">
+                    <label for="id_alugado">{{form.alugado.label}}: </label>
+                    {{form.alugado}}
+                </div>
+            </div>
+            <div class="fields">
+                <label for="id_descricao">{{form.descricao.label}}: </label>
+                {{form.descricao}}
+            </div>
+            <button class="ui primary button" type="submit">
+                Salvar
+            </button>
+        </form>
+    </div>
+</div>
+{% endblock content %}
+    
