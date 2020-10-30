@@ -4,11 +4,11 @@
 
 {% block content %}
     <div class="ui main container">
+      <div class="ui column centered grid">
         <form action="{% url 'login' %}" method="post">
             {% csrf_token %}
         <div class="ui inverted segment">
             <div class="ui inverted form">
-              <div class="two fields">
                 <div class="field">
                   <label for='id_username'>Username</label>
                   <input id='id_username' name="username" placeholder="Username" type="text">
@@ -17,13 +17,14 @@
                   <label for='id_password'>Senha</label>
                   <input id='id_password' name='password' placeholder="Senha" type="password">
                 </div>
-              </div>
               <button class="ui primary button" type="submit">
-                Salvar
+                Entrar
             </button>
+            <a class="ui button" href="{% url 'criar_usuario' %}">Nova conta</a>
             </div>
         </div>
         </form>
+      </div>
     </div>
 {% endblock content %}
     
