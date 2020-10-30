@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block content %}
+    <div class="ui main container">
+        <form action="{% url 'login' %}" method="post">
+            {% csrf_token %}
+        <div class="ui inverted segment">
+            <div class="ui inverted form">
+              <div class="two fields">
+                <div class="field">
+                  <label for='id_username'>Username</label>
+                  <input id='id_username' name="username" placeholder="Username" type="text">
+                </div>
+                <div class="field">
+                  <label for='id_password'>Senha</label>
+                  <input id='id_password' name='password' placeholder="Senha" type="password">
+                </div>
+              </div>
+              <button class="ui primary button" type="submit">
+                Salvar
+            </button>
+            </div>
+        </div>
+        </form>
+    </div>
+{% endblock content %}
+    

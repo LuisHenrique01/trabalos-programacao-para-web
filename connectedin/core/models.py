@@ -1,28 +1,16 @@
 from django.db import models
 from datetime import date
+from django.contrib.auth.models import User
 # Create your models here.
-class Usuario(models.Model):
-    email = models.EmailField('E-mail', max_length=254)
-    senha = models.CharField('Senha', max_length=100)
-    data_nascimento = models.DateField('Data nascimento', auto_now=False, auto_now_add=False)
-    
-    class Meta:
-        """Meta definition for Usuario."""
-
-        verbose_name = 'Usuario'
-        verbose_name_plural = 'Usuarios'
-    
-    def __str__(self):
-        return '%s'%self.email
-    
     
 class Perfil(models.Model):
-    usuario = models.ForeignKey(Usuario, on_delete=models.CASCADE)
+    usuario = models.OneToOneField(User, on_delete=models.CASCADE)
     nome = models.CharField('Nome', max_length=200)
     contatos = models.ManyToManyField('self', related_name='contatos', blank=True)
-    
+    data_nascimento = models.DateField('Data nascimento', auto_now=False, auto_now_add=False)
+
     def get_timeline(self):
-        return Postagem.objects.filter(perfil=self)
+        return Postagem.objects.filter(models.Q(perfil__in = [contato.id for contato in self.contatos.all()]) | models.Q(perfil=self)).order_by('data')
     
     class Meta:
         """Meta definition for Perfil."""

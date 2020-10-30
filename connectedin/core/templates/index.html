@@ -4,38 +4,76 @@
 {% block content %}
 <div class="main ui container">
     <div class="ui two column centered grid">
-        <div class="column">
-          <h2 class="ui center aligned icon header">
-            <i class="circular user icon"></i>
-            Perfis
-          </h2>
-        </div>
-        <div class="ui four column centered row">
-            {% for perfil in perfis %}
-            <div class="column">
-                <div class="ui card" style="margin-bottom: 20px;">
-                    <div class="image">
-                      <img src="{% static 'img/perfil-fotebol.svg' %}">
-                    </div>
-                    <div class="content">
-                      <a class="header">{{perfil.nome}}</a>
-                      <div class="meta">
-                        <span class="date"><b>Aniversário: </b>{{perfil.usuario.data_nascimento|date:"j F"}}</span>
-                      </div>
-                    </div>
-                    <div class="extra content">
-                      <a href="{% url 'perfil' perfil.id %}">
-                        <button class="ui inverted violet button">
-                            <i class="user icon"></i>
-                            Entrar
-                        </button>
-                      </a>
-                    </div>
+        <div class="four wide column">
+            <div class="ui card" style="margin-bottom: 20px;">
+                <div class="image">
+                  <img src="{% static 'img/perfil-fotebol.svg' %}">
+                </div>
+                <div class="content">
+                  <a href="{% url 'perfil' perfil.id %}" class="header">{{perfil.nome}}</a>
+                  <div class="meta">
+                    <span class="date"><b>Aniversário: </b>{{perfil.data_nascimento|date:"j F"}}</span>
                   </div>
+                </div>
+              </div>
+        </div>
+        <div class="four wide column">
+          <div class="ui card">
+            <div class="content">
+              <div class="header"><i class="hand peace icon"></i>  Nova publicação</div>
+              <div class="description">
+                <div class="ui form">
+                  <form action="{% url 'postar' %}" method="get" id="postar">
+                    <div class="field">
+                      <textarea rows="6" name="texto"></textarea>
+                    </div>
+                  </form>
+                </div>
+              </div>
             </div>
-            {% endfor %}
+            <button type="submit" form="postar" class="ui primary button">
+                <i class="add icon"></i>
+                Postar
+            </button>
+          </div>
         </div>
     </div>
+
+
+
+  <div class="ui two column centered grid">
+  <div class="ui four column centered row">
+    {% for post in posts %}
+    <div class="column">
+      <div class="ui card" style="margin-bottom: 20px;">
+        <div class="content">
+          <div class="right floated meta">{{post.data}}</div>
+          <img class="ui avatar image" src="{% static 'img/perfil-fotebol.svg' %}">
+          <a href="{% url 'perfil' post.perfil.id %}">{{post.perfil}}</a>
+        </div>
+        <div class="content">
+          {{post.texto}}
+        </div>
+        <div class="content">
+          <span class="right floated">
+            <i class="heart outline like icon"></i>
+            17 likes
+          </span>
+          <i class="comment icon"></i>
+          3 comments
+        </div>
+        <div class="extra content">
+          <div class="ui large transparent left icon input">
+            <i class="heart outline icon"></i>
+            <input type="text" placeholder="Add Comment...">
+          </div>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+  </div>
 </div>
+
 {% endblock content %}
     
